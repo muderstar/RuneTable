@@ -1,24 +1,30 @@
 # Make sure this is set to "kotlinforforge"
 modLoader="kotlinforforge"
+#modLoader="javafml"
 # Make sure this is set to the appropriate version range
 loaderVersion="[4.11,)" # Require at least 4.11.x
-license="${mod_license}"
+license="MIT"
 
 [[mods]]
-modId="${mod_id}"
-version="${mod_version}"
-displayName="${mod_name}"
+modId="rune_craft_dog"
+version="1.0.0"
+displayName="RuneCraft"
 # optional
 #credits="The ExampleMod dev team"
-authors="${mod_authors}"
-description='''${mod_description}'''
-[[dependencies.${mod_id}]]
+authors="suystar_bg"
+description='''
+Do you want some cool, chilly , frigid , frosty , refreshing ,
+perfect,great , good particles in your armor?
+
+I know you can do it in command blocks , but how about tryin' mines?
+'''
+[[dependencies.rune_craft_dog]]
     modId="forge"
     mandatory=true
     versionRange="[46,)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.${mod_id}]]
+[[dependencies.rune_craft_dog]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.20,1.21)"

@@ -1,13 +1,18 @@
-package example.examplemod
+package suy.xyz.dog
 
-import example.examplemod.block.ModBlocks
+import suy.xyz.dog.block.ModBlocks
 import net.minecraft.client.Minecraft
+import net.minecraftforge.eventbus.api.IEventBus
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
 import org.apache.logging.log4j.Level
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import suy.xyz.dog.block.moditem.ModCreativeModTabs
+import suy.xyz.dog.block.moditem.ModItem
+import thedarkcolour.kotlinforforge.KotlinModLoadingContext
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import thedarkcolour.kotlinforforge.forge.runForDist
 
@@ -18,26 +23,34 @@ import thedarkcolour.kotlinforforge.forge.runForDist
  *
  * An example for blocks is in the `blocks` package of this mod.
  */
-@Mod(ExampleMod.ID)
-object ExampleMod {
-    const val ID = "examplemod"
+
+@Mod(RuneCraftMod.ID)
+object RuneCraftMod {
+    const val ID = "rune_craft_dog"
 
     // the logger for our mod
-    val LOGGER: Logger = LogManager.getLogger(ID)
+    private val LOGGER: Logger = LogManager.getLogger(ID)
 
     init {
         LOGGER.log(Level.INFO, "Hello world!")
 
         // Register the KDeferredRegister to the mod-specific event bus
+
+        val modEventBus: IEventBus = KotlinModLoadingContext.get().getKEventBus()
+
+        ModCreativeModTabs.register(modEventBus)
+        ModItem.register(modEventBus)
+
         ModBlocks.REGISTRY.register(MOD_BUS)
+
 
         val obj = runForDist(
             clientTarget = {
-                MOD_BUS.addListener(::onClientSetup)
+                MOD_BUS.addListener(RuneCraftMod::onClientSetup)
                 Minecraft.getInstance()
             },
             serverTarget = {
-                MOD_BUS.addListener(::onServerSetup)
+                MOD_BUS.addListener(RuneCraftMod::onServerSetup)
                 "test"
             })
 
