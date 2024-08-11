@@ -1,4 +1,4 @@
-package suy.xyz.dog.block.datagen
+package suy.xyz.dog.datagen
 
 import net.minecraft.core.HolderLookup
 import net.minecraft.data.DataGenerator

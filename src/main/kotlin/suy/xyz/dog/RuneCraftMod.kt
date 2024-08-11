@@ -6,12 +6,11 @@ import net.minecraftforge.eventbus.api.IEventBus
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext
 import org.apache.logging.log4j.Level
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import suy.xyz.dog.block.moditem.ModCreativeModTabs
-import suy.xyz.dog.block.moditem.ModItem
+import suy.xyz.dog.moditem.ModCreativeModTabs
+import suy.xyz.dog.moditem.ModItems
 import thedarkcolour.kotlinforforge.KotlinModLoadingContext
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import thedarkcolour.kotlinforforge.forge.runForDist
@@ -39,9 +38,10 @@ object RuneCraftMod {
         val modEventBus: IEventBus = KotlinModLoadingContext.get().getKEventBus()
 
         ModCreativeModTabs.register(modEventBus)
-        ModItem.register(modEventBus)
+        ModItems.register(modEventBus)
 
         ModBlocks.REGISTRY.register(MOD_BUS)
+
 
 
         val obj = runForDist(

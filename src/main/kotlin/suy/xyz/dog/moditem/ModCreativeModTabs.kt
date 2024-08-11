@@ -1,4 +1,4 @@
-package suy.xyz.dog.block.moditem
+package suy.xyz.dog.moditem
 
 import net.minecraft.core.registries.*
 import net.minecraft.network.chat.Component
@@ -16,12 +16,17 @@ object ModCreativeModTabs {
     @Suppress("MemberVisibilityCanBePrivate")
     val CREATIVE_MODE_TABS: DeferredRegister<CreativeModeTab> = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, RuneCraftMod.ID)
 
-    val RUNCRAFT_TAB : RegistryObject<CreativeModeTab> = CREATIVE_MODE_TABS.register("runucraft_tab"
-    ) {
+    val RUNECRAFT_TAB: RegistryObject<CreativeModeTab> = CREATIVE_MODE_TABS.register("runecraft_tab") {
         CreativeModeTab.builder().icon { ItemStack(Items.WRITABLE_BOOK) }
             .title(Component.translatable(RUNECRAFT_TAB_STRING))
-            .displayItems{_ , pOutput ->
+            .displayItems { _, pOutput ->
                 pOutput.accept(Items.DIAMOND)
+                ModItems.ITEMS.entries.forEach { registryObject ->
+                    val item = registryObject.get()
+                    if (item is ICreativeTab && item.showCreativeTab()) {
+                        pOutput.accept(item)
+                    }
+                }
             }
             .build()
     }

@@ -1,4 +1,4 @@
-package suy.xyz.dog.block.datagen
+package suy.xyz.dog.datagen
 
 import net.minecraft.data.PackOutput
 import net.minecraft.resources.ResourceLocation
