@@ -21,6 +21,7 @@ object ModCreativeModTabs {
             .title(Component.translatable(RUNECRAFT_TAB_STRING))
             .displayItems { _, pOutput ->
                 pOutput.accept(Items.DIAMOND)
+
                 ModItems.ITEMS.entries.forEach { registryObject ->
                     val item = registryObject.get()
                     if (item is ICreativeTab && item.showCreativeTab()) {
