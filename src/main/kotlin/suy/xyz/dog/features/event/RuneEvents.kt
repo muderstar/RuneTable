@@ -1,4 +1,4 @@
-package suy.xyz.dog.moditem.rune.event
+package suy.xyz.dog.features.event
 
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.player.Player
@@ -6,14 +6,14 @@ import net.minecraftforge.event.TickEvent
 import net.minecraftforge.event.entity.living.LivingDeathEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.fml.common.Mod
-import suy.xyz.dog.item.RuneItem
-import suy.xyz.dog.moditem.ModItems
+import suy.xyz.dog.features.item.RuneItem
 
-@Mod.EventBusSubscriber object RuneEvents {
+@Mod.EventBusSubscriber
+object RuneEvents {
     @SubscribeEvent
     fun onPlayerTick(event: TickEvent.PlayerTickEvent) {
         if (event.phase == TickEvent.Phase.END && event.player.level() is ServerLevel) {
-            val level = event.player.level() as ServerLevel
+            // val level = event.player.level() as ServerLevel
             val player = event.player
             val stack = player.mainHandItem
 

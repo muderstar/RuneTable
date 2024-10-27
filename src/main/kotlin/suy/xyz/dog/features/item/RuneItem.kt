@@ -1,4 +1,4 @@
-package suy.xyz.dog.item
+package suy.xyz.dog.features.item
 
 import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.resources.ResourceLocation
@@ -7,17 +7,15 @@ import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.ItemStack
-import net.minecraft.world.level.Level
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.event.TickEvent
 import net.minecraftforge.event.entity.living.LivingDeathEvent
 import net.minecraftforge.event.entity.living.LivingHurtEvent
 import net.minecraftforge.eventbus.api.SubscribeEvent
 import net.minecraftforge.registries.ForgeRegistries
-import suy.xyz.dog.moditem.ICreativeTab
-import suy.xyz.dog.moditem.ModItems
+import suy.xyz.dog.registry.ModItems
 
-class RuneItem(properties: Properties) : Item(properties) , ICreativeTab{
+class RuneItem(properties: Properties) : Item(properties), SimpleCreativeModeTabItem {
 
     init {
         MinecraftForge.EVENT_BUS.register(this)
@@ -44,6 +42,7 @@ class RuneItem(properties: Properties) : Item(properties) , ICreativeTab{
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun spawnParticleEffect(target: Entity, attacker: Player) {
         val level = target.level()
         val pos = target.position()
@@ -99,7 +98,7 @@ class RuneItem(properties: Properties) : Item(properties) , ICreativeTab{
     @SubscribeEvent
     fun onPlayerTick(event: TickEvent.PlayerTickEvent) {
         if (event.phase == TickEvent.Phase.END && event.player.level() is ServerLevel) {
-            val level = event.player.level() as ServerLevel
+            // val level = event.player.level() as ServerLevel
             val player = event.player
             val stack = player.mainHandItem
 
@@ -109,6 +108,4 @@ class RuneItem(properties: Properties) : Item(properties) , ICreativeTab{
             }
         }
     }
-
-    override fun showCreativeTab(): Boolean = true
 }

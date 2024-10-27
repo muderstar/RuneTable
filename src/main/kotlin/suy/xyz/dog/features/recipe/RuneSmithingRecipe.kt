@@ -1,4 +1,4 @@
-package suy.xyz.dog.moditem.rune.recipe
+package suy.xyz.dog.features.recipe
 
 import com.google.gson.JsonObject
 import net.minecraft.core.RegistryAccess
@@ -12,7 +12,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer
 import net.minecraft.world.item.crafting.ShapedRecipe
 import net.minecraft.world.item.crafting.SmithingTransformRecipe
 import net.minecraft.world.level.Level
-import suy.xyz.dog.item.RuneItem
+import suy.xyz.dog.features.item.RuneItem
 
 @Suppress("unused")
 class RuneSmithingRecipe(
@@ -24,7 +24,11 @@ class RuneSmithingRecipe(
 ) : SmithingTransformRecipe(id, template, base, addition, result) {
 
     override fun matches(container: Container, level: Level): Boolean {
-        return template.test(container.getItem(0)) && base.test(container.getItem(1)) && addition.test(container.getItem(2))
+        return template.test(container.getItem(0)) && base.test(container.getItem(1)) && addition.test(
+            container.getItem(
+                2
+            )
+        )
     }
 
     override fun assemble(container: Container, registryAccess: RegistryAccess): ItemStack {
