@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "rune_craft_dog:item/fire_rune"
-  }
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "rune_craft_dog:item/fire_rune"
+    }
 }

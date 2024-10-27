@@ -7,7 +7,7 @@ import net.minecraftforge.client.model.generators.ItemModelProvider
 import net.minecraftforge.common.data.ExistingFileHelper
 import net.minecraftforge.registries.ForgeRegistries
 import suy.xyz.dog.RuneCraftMod
-import suy.xyz.dog.moditem.ModItems
+import suy.xyz.dog.registry.ModItems
 import java.util.stream.Collectors
 
 class ItemModes(
@@ -19,11 +19,13 @@ class ItemModes(
     existingFileHelper,
 ) {
 
-    @Suppress("PropertyName") val GENERATED = "item/generated"
+    @Suppress("PropertyName")
+    val GENERATED = "item/generated"
 
-    @Suppress("PropertyName") val HANDHELD = "item/handheld"
+    @Suppress("PropertyName")
+    val HANDHELD = "item/handheld"
 
-    override fun registerModels(){
+    override fun registerModels() {
         val items: MutableSet<Item> = ForgeRegistries.ITEMS.values.stream()
             .filter {
                 RuneCraftMod.ID == ForgeRegistries.ITEMS.getKey(it)?.namespace
@@ -45,5 +47,6 @@ class ItemModes(
     private fun itemName(item: Item): String? = ForgeRegistries.ITEMS.getKey(item)?.path
     fun resourceBlock(path: String): ResourceLocation = ResourceLocation(RuneCraftMod.ID, "block/$path")
     private fun resourceItem(path: String): ResourceLocation = ResourceLocation(RuneCraftMod.ID, "item/$path")
-    fun itemGeneratedModel(item: Item, texture: ResourceLocation) = withExistingParent(itemName(item),GENERATED).texture("layer0",texture)
+    fun itemGeneratedModel(item: Item, texture: ResourceLocation) =
+        withExistingParent(itemName(item), GENERATED).texture("layer0", texture)
 }

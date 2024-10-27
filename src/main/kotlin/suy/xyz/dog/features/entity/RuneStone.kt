@@ -1,4 +1,4 @@
-package suy.xyz.dog.moditem.rune.entity
+package suy.xyz.dog.features.entity
 
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.entity.player.Player

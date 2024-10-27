@@ -1,7 +1,5 @@
 package suy.xyz.dog
 
-import suy.xyz.dog.block.ModBlocks
-import net.minecraft.client.Minecraft
 import net.minecraftforge.eventbus.api.IEventBus
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
@@ -9,8 +7,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent
 import org.apache.logging.log4j.Level
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import suy.xyz.dog.moditem.ModCreativeModTabs
-import suy.xyz.dog.moditem.ModItems
 import thedarkcolour.kotlinforforge.KotlinModLoadingContext
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import thedarkcolour.kotlinforforge.forge.runForDist
@@ -31,30 +27,20 @@ object RuneCraftMod {
     private val LOGGER: Logger = LogManager.getLogger(ID)
 
     init {
-        LOGGER.log(Level.INFO, "Hello world!")
-
         // Register the KDeferredRegister to the mod-specific event bus
 
         val modEventBus: IEventBus = KotlinModLoadingContext.get().getKEventBus()
+        CommonProxy.init(modEventBus)
 
-        ModCreativeModTabs.register(modEventBus)
-        ModItems.register(modEventBus)
-
-        ModBlocks.REGISTRY.register(MOD_BUS)
-
-
-
-        val obj = runForDist(
+        runForDist(
             clientTarget = {
                 MOD_BUS.addListener(RuneCraftMod::onClientSetup)
-                Minecraft.getInstance()
+                MOD_BUS.addListener(CommonProxy::initCreativeModeTab)
             },
             serverTarget = {
                 MOD_BUS.addListener(RuneCraftMod::onServerSetup)
-                "test"
-            })
-
-        println(obj)
+            }
+        )
     }
 
     /**
@@ -62,6 +48,7 @@ object RuneCraftMod {
      * things such as renderers and keymaps
      * Fired on the mod specific event bus.
      */
+    @Suppress("UNUSED_PARAMETER")
     private fun onClientSetup(event: FMLClientSetupEvent) {
         LOGGER.log(Level.INFO, "Initializing client...")
     }
@@ -69,6 +56,7 @@ object RuneCraftMod {
     /**
      * Fired on the global Forge bus.
      */
+    @Suppress("UNUSED_PARAMETER")
     private fun onServerSetup(event: FMLDedicatedServerSetupEvent) {
         LOGGER.log(Level.INFO, "Server starting...")
     }

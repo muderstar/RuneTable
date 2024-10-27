@@ -1,16 +1,16 @@
 [
-  {
-    "id": "fire_rune",
-    "displayName": "Fire Rune",
-    "tooltip": "&6Make You burn like blaze.",
-    "weaponParticleEffect": "FLAME",
-    "armorParticleEffect": "SMOKE"
-  },
-  {
-    "id": "frost_rune",
-    "displayName": "Frost Rune",
-    "tooltip": "&bSnow man is frosty!",
-    "weaponParticleEffect": "SNOWFLAKE",
-    "armorParticleEffect": "CLOUD"
-  }
+    {
+        "id": "fire_rune",
+        "displayName": "Fire Rune",
+        "tooltip": "&6Make You burn like blaze.",
+        "weaponParticleEffect": "FLAME",
+        "armorParticleEffect": "SMOKE"
+    },
+    {
+        "id": "frost_rune",
+        "displayName": "Frost Rune",
+        "tooltip": "&bSnow man is frosty!",
+        "weaponParticleEffect": "SNOWFLAKE",
+        "armorParticleEffect": "CLOUD"
+    }
 ]

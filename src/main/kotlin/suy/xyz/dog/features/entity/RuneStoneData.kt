@@ -1,4 +1,4 @@
-package suy.xyz.dog.moditem.rune.entity
+package suy.xyz.dog.features.entity
 
 data class RuneStoneData(
     val id: String,
